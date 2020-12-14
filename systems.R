@@ -5,7 +5,7 @@ library(DT)
 library(data.table)
 library(reshape2)
 
-system1 <- function(input, movies, ratings) {
+system1 <- function(user_input, movies, ratings) {
   
   genre_list <- c("Action", "Adventure", "Animation", "Children", 
                   "Comedy", "Crime","Documentary", "Drama", "Fantasy",
@@ -17,7 +17,7 @@ system1 <- function(input, movies, ratings) {
     summarize(ratings_per_movie = n(), ave_ratings = mean(Rating)) %>%
     inner_join(movies, by = 'MovieID')
 
-  genre = tmp[match(input, genre_list, ""),]
+  genre = tmp[match(user_input, genre_list, ""),]
   recom = arrange(genre, desc(ratings_per_movie))
   
   recom
