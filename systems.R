@@ -36,7 +36,7 @@ system2 <- function(ratings) {
   rownames(Rmat) = levels(tmp$i)
   colnames(Rmat) = levels(tmp$j)
   Rmat = new('realRatingMatrix', data = Rmat)
-  random_user = 3333
+  random_user = sample(1:6040, 1)
   
   rec_UBCF = Recommender(Rmat, method = 'UBCF', parameter = list(normalize = 'Z-score', method = 'Cosine', nn = 25))
   recom = predict(rec_UBCF, Rmat[random_user, ], type = 'ratings')
